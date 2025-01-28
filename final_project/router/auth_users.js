@@ -89,7 +89,8 @@ regd_users.post("/login", (req,res) => {
 regd_users.put("/auth/review/:isbn", (req, res) => {
     const isbn = req.params.isbn; // Get the ISBN from the request params
     const { review } = req.query; // Get the review from the request query
-    const username = req.session.username; // Get the username from the session
+    const username = req.session.authorization?.username;
+    // Get the username from the session
   
     if (!review) {
       return res.status(400).json({ message: "Review content is missing." });
